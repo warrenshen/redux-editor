@@ -6,7 +6,8 @@ var config = require('./webpack.config.dev');
 new webpackDevServer(webpack(config), {
   historyApiFallback: true,
   hot: true,
-  publicPath: config.output.publicPath
+  publicPath: config.output.publicPath,
+  stats: { colors: true }
 }).listen(3000, 'localhost', function (err, result) {
   if (err) {
     return console.log(err);
