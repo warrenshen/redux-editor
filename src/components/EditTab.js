@@ -11,10 +11,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function() {
+export default function(props) {
+  const {
+    story,
+  } = props;
   return (
     <div className={css(styles.container)}>
-      <EditStory story={{}} />
+      <EditStory story={story} />
     </div>
   );
 }

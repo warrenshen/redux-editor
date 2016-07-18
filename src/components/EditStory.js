@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
 
 const styles = StyleSheet.create({
   display: 'flex',
   outline: 'none',
-  userSelect: 'none',
 });
 
-export default class EditStory extends Component {
+class EditStory extends Component {
   render() {
     const {
       story,
@@ -23,3 +23,13 @@ export default class EditStory extends Component {
     );
   }
 };
+
+const mapStateToProps = (state) => {
+  return {
+    story: state.story,
+  };
+};
+
+export default connect(
+  mapStateToProps
+)(EditStory);
