@@ -9,6 +9,7 @@ import EditTab from './EditTab';
 const store = createStore(rootReducer);
 
 export default function() {
+  console.log(store.getState());
   return (
     <Provider store={store}>
       <EditTab />
