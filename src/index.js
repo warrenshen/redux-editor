@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import ReduxEditor from './ReduxEditor';
+import ReduxEditor from './components/ReduxEditor';
 
 if (module.hot) {
   module.hot.accept();
