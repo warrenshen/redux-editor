@@ -4,8 +4,8 @@
   "description": "",
   "main": "application.js",
   "scripts": {
-    "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --config webpack.config.dev.js --watch",
+    "serve": "node server.js"
   },
   "repository": {
     "type": "git",
