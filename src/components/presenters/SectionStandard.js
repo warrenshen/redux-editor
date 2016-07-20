@@ -1,6 +1,6 @@
 import React from 'react';
 
-import EditBlockStandard from './EditBlockStandard';
+import BlockParagraph from './BlockParagraph';
 
 export default (props) => {
   const {
@@ -9,7 +9,7 @@ export default (props) => {
   return (
     <div className={'section-standard'}>
       {blocks.map((block) => (
-        <EditBlockStandard
+        <BlockParagraph
           block={block}
           key={block.id}
         />

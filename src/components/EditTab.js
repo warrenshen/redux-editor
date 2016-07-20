@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, css } from 'aphrodite';
 
-import EditStory from './EditStory';
+import EditableStory from './containers/EditableStory';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,7 +17,7 @@ export default function(props) {
   } = props;
   return (
     <div className={css(styles.container)}>
-      <EditStory story={story} />
+      <EditableStory story={story} />
     </div>
   );
 }

@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
 
-import EditSectionStandard from './EditSectionStandard';
+import SectionStandard from './presenters/SectionStandard';
 
 const styles = StyleSheet.create({
   display: 'flex',
   outline: 'none',
 });
 
-class EditStory extends Component {
+class EditableStory extends Component {
   render() {
     const { sections } = this.props;
     return (
@@ -19,7 +19,7 @@ class EditStory extends Component {
         ref={'story'}
       >
         {sections.map((section) => (
-          <EditSectionStandard
+          <SectionStandard
             key={section.id}
             blocks={section.blocks}
           />
@@ -46,4 +46,4 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps
-)(EditStory);
+)(EditableStory);
