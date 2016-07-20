@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
 
-import SectionStandard from './presenters/SectionStandard';
+import SectionStandard from '../presenters/SectionStandard';
 
 const styles = StyleSheet.create({
   display: 'flex',

@@ -5,7 +5,16 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  switch (action.type) {
+  const { payload, type } = action;
+  switch (type) {
+    case 'ACTION_UPDATE_CARET':
+      return {
+        block: payload.block,
+        offest: payload.offset,
+        section: payload.section,
+      };
+    case 'ACTION_UPDATE_RANGE':
+      return null;
     default:
       return state;
   }

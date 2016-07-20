@@ -18,7 +18,7 @@ const initialState = {
     0: {
       blockIds: [0],
       id: 0,
-      type: 'MODEL_STORY_STANDARD',
+      type: 'MODEL_SECTION_STANDARD',
     },
   },
 };
