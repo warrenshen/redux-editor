@@ -20,8 +20,9 @@ class EditableStory extends Component {
       >
         {sections.map((section) => (
           <SectionStandard
-            key={section.id}
             blocks={section.blocks}
+            id={section.id}
+            key={section.id}
           />
         ))}
       </div>
