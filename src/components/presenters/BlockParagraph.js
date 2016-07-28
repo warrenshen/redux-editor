@@ -1,4 +1,11 @@
 import React from 'react';
+import { StyleSheet, css } from 'aphrodite';
+
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+  },
+});
 
 export default (props) => {
   const {
@@ -7,7 +14,7 @@ export default (props) => {
   } = props;
   return (
     <div
-      className={'block-paragraph'}
+      className={css(styles.container)}
       data-id={id}
     >
       {block.content}

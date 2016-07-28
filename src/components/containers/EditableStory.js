@@ -7,8 +7,9 @@ import SectionStandard from '../presenters/SectionStandard';
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
+    flexDirection: 'column',
     width: '712px',
-    margin: '64px auto 0',
+    margin: '0 auto',
     paddingBottom: '356px',
     outline: 'none',
   },

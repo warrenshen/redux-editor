@@ -1,6 +1,13 @@
 import React from 'react';
+import { StyleSheet, css } from 'aphrodite';
 
 import BlockParagraph from './BlockParagraph';
+
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+  },
+});
 
 export default (props) => {
   const {
@@ -9,7 +16,7 @@ export default (props) => {
   } = props;
   return (
     <div
-      className={'section-standard'}
+      className={css(styles.container)}
       data-id={id}
     >
       {blocks.map((block) => (
