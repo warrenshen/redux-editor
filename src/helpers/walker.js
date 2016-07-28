@@ -27,6 +27,10 @@ class Walker {
 
   generateCaret(selection, type='anchor') {
     const baseNode = selection[`${type}Node`];
+    if (baseNode === null) {
+      return null;
+    }
+
     const blockNode = this.findBlockNode(baseNode);
     const sectionNode = blockNode.parentNode;
 
