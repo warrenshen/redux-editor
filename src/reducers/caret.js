@@ -1,7 +1,15 @@
 const initialState = {
+  active: true,
   block: 0,
   offset: 0,
   section: 0,
+};
+
+const inactiveState = {
+  active: false,
+  block: null,
+  offset: null,
+  section: null,
 };
 
 export default (state = initialState, action) => {
@@ -9,12 +17,13 @@ export default (state = initialState, action) => {
   switch (type) {
     case 'ACTION_UPDATE_CARET':
       return {
+        active: payload.active,
         block: payload.block,
         offest: payload.offset,
         section: payload.section,
       };
     case 'ACTION_UPDATE_RANGE':
-      return null;
+      return inactiveState;
     default:
       return state;
   }
