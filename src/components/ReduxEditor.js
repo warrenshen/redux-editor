@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import rootReducer from '../reducers';
 
-import EditTab from './EditTab';
+import EditTab from './containers/EditTab';
 
 const store = createStore(rootReducer);
 

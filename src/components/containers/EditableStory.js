@@ -5,8 +5,13 @@ import { StyleSheet, css } from 'aphrodite';
 import SectionStandard from '../presenters/SectionStandard';
 
 const styles = StyleSheet.create({
-  display: 'flex',
-  outline: 'none',
+  container: {
+    display: 'flex',
+    width: '712px',
+    margin: '64px auto 0',
+    paddingBottom: '356px',
+    outline: 'none',
+  },
 });
 
 class EditableStory extends Component {
