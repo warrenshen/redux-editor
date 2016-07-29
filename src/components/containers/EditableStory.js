@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom'
 import { connect } from 'react-redux';
 import { StyleSheet, css } from 'aphrodite';
+
+import {
+  handleBackspace,
+  handleEnter,
+} from '../../actions/story';
 
 import SectionStandard from '../presenters/SectionStandard';
 
@@ -16,13 +22,57 @@ const styles = StyleSheet.create({
 });
 
 class EditableStory extends Component {
+  constructor(props) {
+    super(props);
+    this.onKeyDown = this.onKeyDown.bind(this);
+    this.onKeyPress = this.onKeyPress.bind(this);
+  }
+
+  onKeyDown(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const {
+      which,
+    } = event;
+    const {
+      onBackspaceDown,
+    } = this.props;
+    if (which === 8) {
+      onBackspaceDown();
+    }
+  }
+
+  onKeyPress(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const {
+      which,
+    } = event;
+    const {
+      onEnterPress,
+    } = this.props;
+    if (which === 13) {
+      onEnterPress();
+    }
+  }
+
+  componentDidMount() {
+    var container = ReactDOM.findDOMNode(this.refs.container);
+    container.addEventListener('keydown', this.onKeyDown);
+  }
+
+  componentWillUnmount() {
+    var container = ReactDOM.findDOMNode(this.refs.container);
+    container.removeEventListener('keydown', this.onKeyDown);
+  }
+
   render() {
     const { sections } = this.props;
     return (
       <div
         className={css(styles.container)}
         contentEditable={true}
-        ref={'story'}
+        ref={'container'}
       >
         {sections.map((section) => (
           <SectionStandard
@@ -51,6 +101,14 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onBackspaceDown: () => dispatch(handleBackspace()),
+    onEnterPress: () => dispatch(handleEnter()),
+  };
+};
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(EditableStory);

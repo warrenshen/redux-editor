@@ -27,7 +27,8 @@ export default (state = initialState, action) => {
   const { payload, type } = action;
   switch (type) {
     case 'ACTION_HANDLE_BACKSPACE':
-      console.log(payload);
+      return state;
+    case 'ACTION_HANDLE_ENTER':
       return state;
     default:
       return state;
