@@ -19,7 +19,7 @@ export default (state = initialState, action) => {
       return {
         active: payload.active,
         block: payload.block,
-        offest: payload.offset,
+        offset: payload.offset,
         section: payload.section,
       };
     case 'ACTION_UPDATE_RANGE':
