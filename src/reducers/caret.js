@@ -15,6 +15,16 @@ const inactiveState = {
 export default (state = initialState, action) => {
   const { payload, type } = action;
   switch (type) {
+    case 'ACTION_HANDLE_BACKSPACE':
+      const { caret, range } = payload;
+      if (caret.active) {
+        return {
+          active: caret.active,
+          block: caret.block,
+          offset: caret.offset - 1,
+          section: caret.section,
+        };
+      }
     case 'ACTION_UPDATE_CARET':
       return {
         active: payload.active,
