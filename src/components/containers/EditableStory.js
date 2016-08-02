@@ -9,6 +9,8 @@ import {
   handleEnter,
 } from '../../actions/story';
 
+import Walker from '../../helpers/walker';
+
 import SectionStandard from '../presenters/SectionStandard';
 
 const styles = StyleSheet.create({
@@ -25,8 +27,25 @@ const styles = StyleSheet.create({
 class EditableStory extends Component {
   constructor(props) {
     super(props);
+    this.node = null;
     this.onKeyDown = this.onKeyDown.bind(this);
     this.onKeyPress = this.onKeyPress.bind(this);
+  }
+
+  componentDidMount() {
+    this.node = ReactDOM.findDOMNode(this.refs.container);
+    this.node.addEventListener('keydown', this.onKeyDown);
+    this.node.addEventListener('keypress', this.onKeyPress);
+    Walker.renderCaret(this.props.caret, this.node);
+  }
+
+  componentDidUpdate() {
+    Walker.renderCaret(this.props.caret, this.node);
+  }
+
+  componentWillUnmount() {
+    this.node.removeEventListener('keydown', this.onKeyDown);
+    this.node.removeEventListener('keypress', this.onKeyPress);
   }
 
   onKeyDown(event) {
@@ -62,18 +81,6 @@ class EditableStory extends Component {
     }
   }
 
-  componentDidMount() {
-    var container = ReactDOM.findDOMNode(this.refs.container);
-    container.addEventListener('keydown', this.onKeyDown);
-    container.addEventListener('keypress', this.onKeyPress);
-  }
-
-  componentWillUnmount() {
-    var container = ReactDOM.findDOMNode(this.refs.container);
-    container.removeEventListener('keydown', this.onKeyDown);
-    container.removeEventListener('keypress', this.onKeyPress);
-  }
-
   render() {
     const { sections } = this.props;
     return (
@@ -96,11 +103,18 @@ class EditableStory extends Component {
 
 const mapStateToProps = (state) => {
   const {
+    caret,
+    range,
+    story,
+  } = state;
+  const {
     blocks,
     sectionIds,
     sections,
-  } = state.story;
+  } = story;
   return {
+    caret: caret,
+    range: range,
     sections: sectionIds.map((sectionId) => {
       const section = Object.assign({}, sections[sectionId]);
       section.blocks = section.blockIds.map((blockId) => blocks[blockId]);

@@ -6,6 +6,7 @@ import BlockParagraph from './BlockParagraph';
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
+    flexDirection: 'column',
   },
 });
 

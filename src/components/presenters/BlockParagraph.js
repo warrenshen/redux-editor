@@ -5,6 +5,9 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
   },
+  content: {
+
+  },
 });
 
 export default (props) => {
@@ -17,7 +20,9 @@ export default (props) => {
       className={css(styles.container)}
       data-id={id}
     >
-      {block.content}
+      <p className={css(styles.content)}>
+        {block.content}
+      </p>
     </div>
   );
 };
