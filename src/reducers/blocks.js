@@ -16,6 +16,21 @@ export default (state = {}, action) => {
       } else {
         return state;
       }
+    case 'ACTION_HANDLE_CHARACTER':
+      if (caret.active) {
+        const block = state[caret.block];
+        const content = block.content;
+        const character = payload.character;
+        return {
+          ...state,
+          [caret.block]: {
+            ...block,
+            content: content.slice(0, caret.offset) + character + content.slice(caret.offset),
+          },
+        };
+      } else {
+        return state;
+      }
     default:
       return state;
   }

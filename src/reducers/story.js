@@ -27,6 +27,7 @@ export default (state = initialState, action) => {
   const { payload, type } = action;
   switch (type) {
     case 'ACTION_HANDLE_BACKSPACE':
+    case 'ACTION_HANDLE_CHARACTER':
       return {
         ...state,
         blocks: blocks(state.blocks, action),

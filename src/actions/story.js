@@ -15,6 +15,24 @@ export function handleBackspace() {
   };
 };
 
+function handleCharacterStatefully(caret, range, character) {
+  return {
+    payload: {
+      caret: caret,
+      character: character,
+      range: range,
+    },
+    type: 'ACTION_HANDLE_CHARACTER',
+  };
+};
+
+export function handleCharacter(character) {
+  return (dispatch, getState) => {
+    const { caret, range } = getState();
+    return dispatch(handleCharacterStatefully(caret, range, character));
+  };
+};
+
 function handleEnterStatefully(caret, range) {
   return {
     payload: {
