@@ -5,6 +5,7 @@ import { StyleSheet, css } from 'aphrodite';
 
 import {
   handleBackspace,
+  handleCharacter,
   handleEnter,
 } from '../../actions/story';
 
@@ -29,7 +30,6 @@ class EditableStory extends Component {
   }
 
   onKeyDown(event) {
-    event.preventDefault();
     event.stopPropagation();
     const {
       which,
@@ -38,32 +38,40 @@ class EditableStory extends Component {
       onBackspaceDown,
     } = this.props;
     if (which === 8) {
+      event.preventDefault();
       onBackspaceDown();
     }
   }
 
   onKeyPress(event) {
-    event.preventDefault();
     event.stopPropagation();
     const {
       which,
     } = event;
     const {
+      onCharacterPress,
       onEnterPress,
     } = this.props;
     if (which === 13) {
+      event.preventDefault();
       onEnterPress();
+    } else {
+      event.preventDefault();
+      const character = String.fromCharCode(which);
+      onCharacterPress(character);
     }
   }
 
   componentDidMount() {
     var container = ReactDOM.findDOMNode(this.refs.container);
     container.addEventListener('keydown', this.onKeyDown);
+    container.addEventListener('keypress', this.onKeyPress);
   }
 
   componentWillUnmount() {
     var container = ReactDOM.findDOMNode(this.refs.container);
     container.removeEventListener('keydown', this.onKeyDown);
+    container.removeEventListener('keypress', this.onKeyPress);
   }
 
   render() {
@@ -104,6 +112,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onBackspaceDown: () => dispatch(handleBackspace()),
+    onCharacterPress: (character) => dispatch(handleCharacter(character)),
     onEnterPress: () => dispatch(handleEnter()),
   };
 };
